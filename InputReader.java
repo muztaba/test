@@ -1,38 +1,65 @@
 class InputReader {
-    private BufferedReader reader;
-    private StringTokenizer tokenizer;
+	private BufferedReader reader;
+	public StringTokenizer tokenizer;
 
-    public InputReader(InputStream inputStream) {
-        reader = new BufferedReader(new InputStreamReader(inputStream));
-        tokenizer = null;
-    }
+	InputReader(File file) {
+		try {
+			reader = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		tokenizer = null;
+	}
 
-    public String next() {
-        while(tokenizer == null || !tokenizer.hasMoreTokens()) {
-            try{
-                tokenizer = new StringTokenizer(reader.readLine());
-            } catch (IOException e) {
-                throw new RuntimeException();
-            }
-        }
-        return tokenizer.nextToken();
-    }
+	InputReader(InputStream stream) {
+		reader = new BufferedReader(new InputStreamReader(stream));
+		tokenizer = null;
+	}
 
-    public String nextLine() {
-        String str = "";
-        try {
-            str = reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        return str;
-    }
+	public String next() {
+		while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+			try {
+				tokenizer = new StringTokenizer(reader.readLine());
+			} catch (Exception e) {
 
-    public int nextInt() {
-        return Integer.parseInt(next());
-    }
+			}
+		}
+		return tokenizer.nextToken();
+	}
 
-    public double nextDouble() {
-        return Double.parseDouble(next());
-    }
+	public String nextLine() {
+		String str = "";
+		try {
+			str = reader.readLine();
+		} catch (IOException e) {
+			throw new RuntimeException();
+		}
+		return str;
+	}
+
+	public boolean hasMoreTokens() {
+		while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+			String str = null;
+			try {
+				str = reader.readLine();
+			} catch (IOException e) {
+				throw new RuntimeException();
+			}
+			if (str == null) return false;
+			tokenizer = new StringTokenizer(str);
+		}
+		return true;
+	}
+
+	public int nextInt() {
+		return Integer.parseInt(next());
+	}
+
+	public double nextDouble() {
+		return Double.parseDouble(next());
+	}
+
+	public long nextLong() {
+		return Long.parseLong(next());
+	}
 }
