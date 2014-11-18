@@ -7,14 +7,7 @@ import java.util.Scanner;
  * Created by seal on 10/28/14.
  */
 public class LoyedAlgorithm {
-	/*
-	4
-	2
-	1 1
-	2 1
-	4 3
-	5 4
-	 */
+
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
